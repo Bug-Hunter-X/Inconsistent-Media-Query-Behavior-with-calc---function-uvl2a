@@ -1,0 +1,12 @@
+The following CSS code snippet demonstrates an uncommon error related to the usage of the `calc()` function within media queries:
+
+```css
+@media (max-width: calc(100vw - 100px)) {
+  /* Styles applied when the viewport width is less than 100vw - 100px */
+  body {
+    background-color: lightblue;
+  }
+}
+```
+
+The issue lies in the direct use of `calc()` within a media query's width condition.  While `calc()` is generally supported, using it directly with `vw` or `vh` units in media queries might cause unexpected behavior or lack of support in some older or less common browsers.  The calculation needs to result in a concrete pixel value for the media query to be consistently effective.
