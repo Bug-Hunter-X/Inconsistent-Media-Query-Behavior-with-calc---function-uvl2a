@@ -1,0 +1,28 @@
+The solution involves using JavaScript to dynamically calculate the width and apply a CSS custom property:
+
+```javascript
+function setMaxWidth() {
+  const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+  const maxWidth = vw - 100; // Calculate max-width
+  document.documentElement.style.setProperty('--max-width', `${maxWidth}px`);
+}
+
+setMaxWidth(); // Initial calculation
+window.addEventListener('resize', setMaxWidth); // Recalculate on resize
+```
+
+And then, update the CSS to use the custom property:
+
+```css
+:root {
+  --max-width: 0; /* Initial value */
+}
+
+@media (max-width: var(--max-width)) {
+  body {
+    background-color: lightblue;
+  }
+}
+```
+
+This approach ensures the media query condition is always a concrete pixel value, improving cross-browser compatibility and reliability.
